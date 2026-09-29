@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-obsidian: #09090b;
+  --emerald: #10b981;
+  --emerald-bright: #34d399;
+  --emerald-dim: #064e3b;
+  --crimson: #ef4444;
+  --amber: #f59e0b;
+  --zinc-900: #18181b;
+  --zinc-800: #27272a;
+  --zinc-700: #3f3f46;
+  --zinc-400: #a1a1aa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg-obsidian);
+  color: #e4e4e7;
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Scanline Overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Terminal Glow Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #18181b; }
+::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #34d399; }
+
+/* ─── Tactical Grid Background ─── */
+.tactical-grid {
+  background-image:
+    linear-gradient(rgba(16,185,129,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,185,129,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Emerald Glow Effects ─── */
+.emerald-glow {
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4), 0 0 40px rgba(16, 185, 129, 0.1);
+}
+.emerald-glow-text {
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+}
+.crimson-glow {
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.4), 0 0 40px rgba(239, 68, 68, 0.1);
+}
+.amber-glow {
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+/* ─── Terminal Text ─── */
+.terminal-text {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+
+/* ─── Glassmorphism Cards ─── */
+.glass-card {
+  background: rgba(24, 24, 27, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.glass-card-crimson {
+  background: rgba(24, 24, 27, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ─── Animated Cursor ─── */
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: #10b981;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Message Bubbles ─── */
+.msg-user {
+  background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(16,185,129,0.06));
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: 12px 12px 2px 12px;
+}
+.msg-agent {
+  background: rgba(39, 39, 42, 0.7);
+  border: 1px solid rgba(63, 63, 70, 0.6);
+  border-radius: 2px 12px 12px 12px;
+}
+.msg-system {
+  background: rgba(6, 78, 59, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+}
+.msg-breach {
+  background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(245,158,11,0.08));
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 8px;
+}
+
+/* ─── MCP Tool Chip ─── */
+.tool-chip {
+  background: rgba(6, 78, 59, 0.3);
+  border: 1px solid rgba(16,185,129,0.3);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+}
+
+/* ─── Flag Capture Banner ─── */
+.flag-banner {
+  background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(245,158,11,0.15), rgba(16,185,129,0.1));
+  border: 1px solid rgba(239,68,68,0.5);
+  animation: flagCapture 0.5s ease-out forwards;
+}
+
+@keyframes flagCapture {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.03); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Status Badge ─── */
+.status-online { color: #10b981; }
+.status-warning { color: #f59e0b; }
+.status-danger { color: #ef4444; }
+
+/* ─── Hint Section ─── */
+.hint-collapsed {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.hint-expanded {
+  max-height: 500px;
+  transition: max-height 0.4s ease;
+}
+
+/* ─── Level Tab Active ─── */
+.level-tab-active {
+  background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+  border-bottom: 2px solid #10b981;
+  color: #10b981;
+}
+.level-tab-inactive {
+  color: #71717a;
+  border-bottom: 2px solid transparent;
+}
+.level-tab-locked {
+  color: #3f3f46;
+  border-bottom: 2px solid transparent;
+  cursor: not-allowed;
+}
+
+/* ─── Input Focus ─── */
+.tactical-input {
+  background: rgba(24, 24, 27, 0.9);
+  border: 1px solid rgba(63, 63, 70, 0.8);
+  color: #e4e4e7;
+  font-family: 'JetBrains Mono', monospace;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tactical-input:focus {
+  outline: none;
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1), 0 0 16px rgba(16, 185, 129, 0.15);
+}
+
+/* ─── Button Styles ─── */
+.btn-primary {
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: #000;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #10b981, #34d399);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* ─── Pulse Dot ─── */
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ─── Scrollable Chat Area ─── */
+.chat-scroll {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* ─── Progress Bar ─── */
+.progress-fill {
+  background: linear-gradient(90deg, #059669, #10b981, #34d399);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
