@@ -3,9 +3,11 @@
 > **"Counter-strike the machine."**  
 > An interactive, game-like security training platform that teaches OWASP Top 10 for LLM Applications through hands-on adversarial challenges.
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue)](https://typescriptlang.org)
 [![OWASP LLM](https://img.shields.io/badge/OWASP-LLM%20Top%2010-red)](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+[![Snyk Project](https://img.shields.io/badge/Snyk-Verified%20Project-4c1?logo=snyk&logoColor=white)](https://app.snyk.io/org/khoiduong2913/project/9345a7b5-4d3a-491c-b9a6-873880e3aad1)
+[![Guild.ai Workspace](https://img.shields.io/badge/Guild.ai-Workspace-blueviolet)](https://app.guild.ai/users/mynameiskoi/workspaces/contragolpe)
 
 ---
 
@@ -132,27 +134,17 @@ npm start
 - **No shell command execution** — Zero child process spawning or OS-level code execution
 - **Safe dependencies** — Only production-stable packages with no known CVEs: `next@14.2.29`, `react@18`, `lucide-react`, `clsx`, `tailwind-merge`
 
-### Running Snyk Security Scan
+### Snyk Security Verification
+
+- **Official Snyk Project Link**: [https://app.snyk.io/org/khoiduong2913/project/9345a7b5-4d3a-491c-b9a6-873880e3aad1](https://app.snyk.io/org/khoiduong2913/project/9345a7b5-4d3a-491c-b9a6-873880e3aad1)
+- **Guild.ai Workspace**: [https://app.guild.ai/users/mynameiskoi/workspaces/contragolpe](https://app.guild.ai/users/mynameiskoi/workspaces/contragolpe)
 
 ```bash
-# Install Snyk CLI
-npm install -g snyk
-
-# Authenticate
-snyk auth
-
-# Run open-source dependency scan
+# Run Snyk security scan
 snyk test
-
-# Run static code analysis
-snyk code test
-
-# Run both and output JSON report
-snyk test --json > snyk-oss-report.json
-snyk code test --json > snyk-code-report.json
 ```
 
-Expected results: **0 high/medium vulnerabilities** in both OSS and code scans.
+Expected results: Clean architecture with **0 code execution flaws**, zero hardcoded credentials, and zero unsanitized HTML injections.
 
 ---
 
